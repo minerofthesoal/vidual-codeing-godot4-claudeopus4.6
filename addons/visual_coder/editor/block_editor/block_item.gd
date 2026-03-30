@@ -254,7 +254,22 @@ func _gui_input(event: InputEvent) -> void:
 	elif event is InputEventMouseMotion and _dragging:
 		if get_global_mouse_position().distance_to(_drag_start_pos) > 5:
 			_dragging = false
-			force_drag(to_dict(), get_global_mouse_position())
+			# Build a lightweight drag preview label
+			var preview := Label.new()
+			preview.text = block_def.get("label", "Block")
+			preview.add_theme_font_size_override("font_size", 12)
+			var ps := StyleBoxFlat.new()
+			ps.bg_color = block_def.get("color", Color(0.3, 0.3, 0.35))
+			ps.corner_radius_top_left = 4
+			ps.corner_radius_top_right = 4
+			ps.corner_radius_bottom_left = 4
+			ps.corner_radius_bottom_right = 4
+			ps.content_margin_left = 8
+			ps.content_margin_right = 8
+			ps.content_margin_top = 4
+			ps.content_margin_bottom = 4
+			preview.add_theme_stylebox_override("normal", ps)
+			force_drag(to_dict(), preview)
 
 func _get_drag_data(_at_position: Vector2) -> Variant:
 	return to_dict()

@@ -383,7 +383,7 @@ func _gen_chain(node_id: int, node_map: Dictionary, data_inputs: Dictionary,
 func _resolve_data(node_id: int, port: int, node_map: Dictionary,
 		data_inputs: Dictionary) -> String:
 	if node_id in data_inputs and port in data_inputs[node_id]:
-		var src := data_inputs[node_id][port]
+		var src: Dictionary = data_inputs[node_id][port]
 		return _eval_output(src["from_node"], src["from_port"], node_map, data_inputs)
 	# Return default from definition
 	var node: Dictionary = node_map.get(node_id, {})
