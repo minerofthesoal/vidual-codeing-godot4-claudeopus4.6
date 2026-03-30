@@ -90,10 +90,10 @@ func _build_ui(def: Dictionary) -> void:
 
 		var l_enable := i < inputs.size()
 		var r_enable := i < outputs.size()
-		var l_type   := inputs[i].get("type", 0) if l_enable else 0
-		var r_type   := outputs[i].get("type", 0) if r_enable else 0
-		var l_color  := inputs[i].get("color", Color.WHITE) if l_enable else Color.WHITE
-		var r_color  := outputs[i].get("color", Color.WHITE) if r_enable else Color.WHITE
+		var l_type: int    = inputs[i].get("type", 0) if l_enable else 0
+		var r_type: int    = outputs[i].get("type", 0) if r_enable else 0
+		var l_color: Color = inputs[i].get("color", Color.WHITE) if l_enable else Color.WHITE
+		var r_color: Color = outputs[i].get("color", Color.WHITE) if r_enable else Color.WHITE
 
 		set_slot(get_child_count() - 1, l_enable, l_type, l_color,
 				 r_enable, r_type, r_color)

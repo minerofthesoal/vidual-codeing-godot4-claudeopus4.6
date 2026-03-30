@@ -298,7 +298,7 @@ func _refresh_var_panel() -> void:
 		var del := Button.new()
 		del.text = "✕"
 		del.flat = true
-		var vc := v  # capture
+		var vc: Dictionary = v  # capture for lambda
 		del.pressed.connect(func(): _variables.erase(vc); _refresh_var_panel(); blocks_changed.emit())
 		row.add_child(del)
 		_var_panel.add_child(row)
